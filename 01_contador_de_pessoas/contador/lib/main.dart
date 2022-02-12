@@ -35,16 +35,19 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 99, 3, 167),
+
+      //? Criando o APPBar
       appBar: AppBar(
-        //? Criando o APPBar
         title: const Text("Contador",
             style: TextStyle(fontSize: 19, fontWeight: FontWeight.bold)),
         backgroundColor: Color.fromARGB(255, 119, 12, 4),
       ),
+
+      //? Criando o corpo do app como uma coluna
       body: Column(
         //* Centralizando
         mainAxisAlignment: MainAxisAlignment.center,
-        //? Criando o corpo do app como uma coluna
+
         //? definindo os itens que vão ter dentro do corpo
         children: [
           const Text(
