@@ -1,40 +1,36 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(app);
 }
 
-//*Criando Widget MyApp
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MyApp extends StatefulWidget {
+  MyApp({Key? key}) : super(key: key);
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: LoginPage(),
+      home: HomePage(),
       debugShowCheckedModeBanner: true,
     );
   }
 }
 
-//* Criando a tela de login
-class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      //? Cor de fundo
-      backgroundColor: Colors.blue[600],
-
-      //? criando coluna para colocar os widgets
-      body: Column(
-        //? ALinhando os widgets de forma centralizada
-        mainAxisAlignment: MainAxisAlignment.center,
-
-        //*Adicionando widgets
-        children: [Text('Sign In')],
-      ),
-    );
+    return Container();
   }
 }
