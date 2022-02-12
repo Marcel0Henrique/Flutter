@@ -28,7 +28,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  //* variavel count
   int count = 0;
+
+  //*criando gets para a logica
+  bool get isEmpty => count == 0;
+  bool isFull() => count == 20;
 
   void decrement() {
     //* Se usa o setState para indicar para o APP que houve uma mudança no estado,
@@ -78,10 +83,14 @@ class _HomePageState extends State<HomePage> {
 
           //? definindo os itens que vão ter dentro do corpo
           children: [
-            const Text(
-              "Entrada Liberada",
+            Text(
+              //? verifica se está lotado, se estiver muda o texto para lotado,
+              //?se não estiver o texto é entrada liberada
+              isFull() ? "Lotado" : "Entrada Liberada",
               style: TextStyle(
-                color: Color.fromARGB(255, 0, 175, 6),
+                color: isFull()
+                    ? const Color.fromARGB(255, 197, 13, 0)
+                    : const Color.fromARGB(255, 0, 175, 6),
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
                 backgroundColor: Color.fromARGB(255, 0, 0, 0),
@@ -93,10 +102,12 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.all(50),
               child: Text(
                 "$count",
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 80,
                   fontWeight: FontWeight.bold,
-                  color: Color.fromARGB(255, 0, 0, 0),
+                  color: isFull()
+                      ? const Color.fromARGB(255, 197, 13, 0)
+                      : Colors.black,
                 ),
               ),
             ),
@@ -108,7 +119,8 @@ class _HomePageState extends State<HomePage> {
               children: [
                 TextButton(
                   style: TextButton.styleFrom(
-                    backgroundColor: Colors.white,
+                    backgroundColor:
+                        isEmpty ? Colors.white.withOpacity(0.3) : Colors.white,
                     fixedSize: const Size(90, 90),
                     //? Muda a cor quando pressiona o botão
                     primary: Colors.black,
@@ -117,7 +129,10 @@ class _HomePageState extends State<HomePage> {
                       borderRadius: BorderRadius.circular(16),
                     ),
                   ),
-                  onPressed: decrement,
+
+                  //? isEmpty retornar true, então ele coloca null e não permite diminuit,
+                  //?se não estiver vazio ele pode diminuir
+                  onPressed: isEmpty ? null : decrement,
                   child: const Text(
                     "Saiu",
                     style: TextStyle(
@@ -135,7 +150,8 @@ class _HomePageState extends State<HomePage> {
 
                 TextButton(
                   style: TextButton.styleFrom(
-                    backgroundColor: Colors.white,
+                    backgroundColor:
+                        isFull() ? Colors.white.withOpacity(0.3) : Colors.white,
                     fixedSize: const Size(90, 90),
                     //? Muda a cor quando pressiona o botão
                     primary: Colors.black,
@@ -144,7 +160,7 @@ class _HomePageState extends State<HomePage> {
                       borderRadius: BorderRadius.circular(16),
                     ),
                   ),
-                  onPressed: increment,
+                  onPressed: isFull() ? null : increment,
                   child: const Text(
                     "Entrou",
                     style: TextStyle(
