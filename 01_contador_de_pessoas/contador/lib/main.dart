@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,7 +12,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: HomePage());
+    return const MaterialApp(
+      home: HomePage(),
+      debugShowCheckedModeBanner: false,
+    );
   }
 }
 
@@ -18,10 +23,18 @@ class MyApp extends StatelessWidget {
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
+  void decrement() {
+    int n = 0;
+  }
+
+  void increment() {
+    int n = 1;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
         //? Criando o APPBar
         title: const Text("Contador",
@@ -32,8 +45,8 @@ class HomePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         //? Criando o corpo do app como uma coluna
         //? definindo os itens que vão ter dentro do corpo
-        children: const [
-          Text(
+        children: [
+          const Text(
             "Liberado",
             style: TextStyle(
               color: Color.fromARGB(255, 19, 124, 23),
@@ -42,13 +55,25 @@ class HomePage extends StatelessWidget {
               letterSpacing: 2,
             ),
           ),
-          Text(
+          const Text(
             "0",
             style: TextStyle(
               fontSize: 80,
               fontWeight: FontWeight.bold,
-              color: Colors.white,
+              color: Color.fromARGB(255, 0, 0, 0),
             ),
+          ),
+          Row(
+            children: [
+              TextButton(
+                onPressed: decrement,
+                child: const Text("Saiu"),
+              ),
+              TextButton(
+                onPressed: increment,
+                child: const Text("Entrou"),
+              ),
+            ],
           ),
         ],
       ),
