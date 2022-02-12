@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       home: Container(
         color: Colors.black,
         alignment: Alignment.center,
-        child: const Text("Olá Mundo!!"),
+        child: const Text("Olá Mundo"),
       ),
     );
   }
