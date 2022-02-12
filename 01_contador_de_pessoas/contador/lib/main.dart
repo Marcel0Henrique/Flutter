@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       home: HomePage(),
       debugShowCheckedModeBanner: false,
     );
@@ -18,15 +18,34 @@ class MyApp extends StatelessWidget {
 }
 
 //* Criando o Widge HomePage que é a pagina principal
-class HomePage extends StatelessWidget {
+//? para o estado da aplicação poder ser alterada é necessario criar o StatefullWidget,
+//?já que o StatelessWidget é estatico
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int count = 0;
+
   void decrement() {
-    int n = 0;
+    //* Se usa o setState para indicar para o APP que houve uma mudança no estado,
+    //* no caso o valor da variavel count diminuiu ou aumentou
+    setState(() {
+      if (count > 0) {
+        count--;
+      }
+    });
   }
 
   void increment() {
-    int n = 0;
+    setState(() {
+      if (count < 20) {
+        count++;
+      }
+    });
   }
 
   @override
@@ -65,15 +84,16 @@ class HomePage extends StatelessWidget {
                 color: Color.fromARGB(255, 0, 175, 6),
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
+                backgroundColor: Color.fromARGB(255, 0, 0, 0),
               ),
             ),
 
             //* Criando espaçamento usando o Padding
-            const Padding(
-              padding: EdgeInsets.all(50),
+            Padding(
+              padding: const EdgeInsets.all(50),
               child: Text(
-                "0",
-                style: TextStyle(
+                "$count",
+                style: const TextStyle(
                   fontSize: 80,
                   fontWeight: FontWeight.bold,
                   color: Color.fromARGB(255, 0, 0, 0),
