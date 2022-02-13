@@ -53,9 +53,12 @@ class _HomePageState extends State<HomePage> {
           player = 0;
         }
       }
+
+      //? Função que verifica se quem venceu o jogo
       verify();
 
-      if (winner == 0) {
+      //? Mostra o Vencedor do jogo
+      if (winner != null) {
         endGame();
       }
     });
@@ -79,16 +82,127 @@ class _HomePageState extends State<HomePage> {
         winner = 1;
       }
     }
+
+    //* Verificando Linha 3
+    else if (toe[7] != null && toe[8] != null && toe[9] != null) {
+      if (toe[7] == 'X' && toe[8] == 'X' && toe[9] == 'X') {
+        winner = 0;
+      } else if (toe[7] != 'X' && toe[8] != 'X' && toe[9] != 'X') {
+        winner = 1;
+      }
+    }
+
+    //* Verificando coluna 1
+    else if (toe[1] != null && toe[4] != null && toe[7] != null) {
+      if (toe[1] == 'X' && toe[4] == 'X' && toe[7] == 'X') {
+        winner = 0;
+      } else if (toe[1] != 'X' && toe[4] != 'X' && toe[7] != 'X') {
+        winner = 1;
+      }
+    }
+
+    //* Verificando coluna 2
+    else if (toe[2] != null && toe[5] != null && toe[8] != null) {
+      if (toe[2] == 'X' && toe[5] == 'X' && toe[8] == 'X') {
+        winner = 0;
+      } else if (toe[2] != 'X' && toe[5] != 'X' && toe[8] != 'X') {
+        winner = 1;
+      }
+    }
+
+    //* Verificando coluna 3
+    else if (toe[3] != null && toe[6] != null && toe[9] != null) {
+      if (toe[3] == 'X' && toe[6] == 'X' && toe[9] == 'X') {
+        winner = 0;
+      } else if (toe[3] != 'X' && toe[6] != 'X' && toe[9] != 'X') {
+        winner = 1;
+      }
+    }
+
+    //*Verificando diagonal 1
+    else if (toe[1] != null && toe[5] != null && toe[9] != null) {
+      if (toe[1] == 'X' && toe[5] == 'X' && toe[9] == 'X') {
+        winner = 0;
+      } else if (toe[1] != 'X' && toe[5] != 'X' && toe[9] != 'X') {
+        winner = 1;
+      }
+    }
+
+    //*Verificando diagonal 2
+    else if (toe[3] != null && toe[5] != null && toe[7] != null) {
+      if (toe[3] == 'X' && toe[5] == 'X' && toe[7] == 'X') {
+        winner = 0;
+      } else if (toe[3] != 'X' && toe[5] != 'X' && toe[7] != 'X') {
+        winner = 1;
+      }
+    }
+
+    //* Verificando empate
+    if (toe[1] != null &&
+        toe[2] != null &&
+        toe[3] != null &&
+        toe[4] != null &&
+        toe[5] != null &&
+        toe[6] != null &&
+        toe[7] != null &&
+        toe[8] != null &&
+        toe[9] != null &&
+        winner == null) {
+      winner = 2;
+    }
+  }
+
+  void restartGame() {
+    setState(() {
+      winner = null;
+      player = 0;
+      for (var i = 1; i <= toe.length; i++) {
+        toe[i] = null;
+      }
+    });
   }
 
   void endGame() {
     //*Criando AlertDialog
     showDialog(
         context: context,
-        builder: (BuildContext context) => const AlertDialog(
-              title: Text('Teste'),
-              content: Text('Esse é um teste'),
-              actions: [],
+        builder: (BuildContext context) => AlertDialog(
+              actionsAlignment: MainAxisAlignment.center,
+              title: Text(
+                winner != 2 ? 'Vitória' : 'Empate',
+                style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold,
+                  color: winner != 2 ? Colors.yellow[800] : Colors.black,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              content: Text(
+                winner != 2
+                    ? winner == 0
+                        ? 'X'
+                        : 'O'
+                    : '#',
+                style: TextStyle(
+                  fontSize: 70,
+                  fontWeight: FontWeight.bold,
+                  color: winner != 2
+                      ? winner == 0
+                          ? Colors.red[800]
+                          : Colors.blue[800]
+                      : Colors.black,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    restartGame();
+                    Navigator.pop(context);
+                  },
+                  child: Text('Tente Novamente'),
+                )
+              ],
             ));
   }
 
@@ -380,6 +494,9 @@ class _HomePageState extends State<HomePage> {
                       fixedSize: const Size(80, 80),
                       primary: Colors.black,
                     ),
+                    onPressed: () {
+                      move(9);
+                    },
                     child: Text(
                       toe[9] == null ? '' : toe[9].toString(),
                       style: const TextStyle(
@@ -387,9 +504,6 @@ class _HomePageState extends State<HomePage> {
                           fontSize: 70,
                           fontWeight: FontWeight.bold),
                     ),
-                    onPressed: () {
-                      move(9);
-                    },
                   ),
                 ),
               ],
