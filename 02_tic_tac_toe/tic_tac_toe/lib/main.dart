@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
   //* Player 0 == X
   //* Player 1 == O
   int player = 0;
-  int i = 0;
+  int? winner;
 
   Map<int, String?> toe = {
     1: null,
@@ -53,13 +53,49 @@ class _HomePageState extends State<HomePage> {
           player = 0;
         }
       }
+      verify();
+
+      if (winner == 0) {
+        endGame();
+      }
     });
+  }
+
+  void verify() {
+    //*Verificando Linha 1
+    if (toe[1] != null && toe[2] != null && toe[3] != null) {
+      if (toe[1] == 'X' && toe[2] == 'X' && toe[3] == 'X') {
+        winner = 0;
+      } else if (toe[1] != 'X' && toe[2] != 'X' && toe[3] != 'X') {
+        winner = 1;
+      }
+    }
+
+    //* Verificando Linha 2
+    else if (toe[4] != null && toe[5] != null && toe[6] != null) {
+      if (toe[4] == 'X' && toe[5] == 'X' && toe[6] == 'X') {
+        winner = 0;
+      } else if (toe[4] != 'X' && toe[5] != 'X' && toe[6] != 'X') {
+        winner = 1;
+      }
+    }
+  }
+
+  void endGame() {
+    //*Criando AlertDialog
+    showDialog(
+        context: context,
+        builder: (BuildContext context) => const AlertDialog(
+              title: Text('Teste'),
+              content: Text('Esse é um teste'),
+              actions: [],
+            ));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 0, 70, 136),
+      backgroundColor: const Color.fromARGB(255, 0, 70, 136),
       body: Column(
         //mainAxisAlignment: MainAxisAlignment.center,
         children: [
