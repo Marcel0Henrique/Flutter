@@ -27,10 +27,23 @@ class _HomePageState extends State<HomePage> {
   //* Player 0 == X
   //* Player 1 == O
   int player = 0;
-  int n = 0;
+
+  Map<int, String?> toe = {
+    1: null,
+    2: null,
+    3: null,
+    4: null,
+    5: null,
+    6: null,
+    7: null,
+    8: null,
+    9: null,
+  };
 
   void move() {
-    n++;
+    setState(() {
+      player = 1;
+    });
   }
 
   @override
@@ -65,7 +78,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 Text(
-                  player == 0 ? 'X' : 'O',
+                  player == 0 ? 'x' : 'O',
                   style: const TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.bold,
@@ -92,9 +105,9 @@ class _HomePageState extends State<HomePage> {
                       primary: Colors.black,
                     ),
                     onPressed: move,
-                    child: const Text(
-                      'X',
-                      style: TextStyle(
+                    child: Text(
+                      player == 0 ? 'X' : 'O',
+                      style: const TextStyle(
                           color: Colors.black,
                           fontSize: 70,
                           fontWeight: FontWeight.bold),
@@ -112,9 +125,9 @@ class _HomePageState extends State<HomePage> {
                       primary: Colors.black,
                     ),
                     onPressed: move,
-                    child: const Text(
-                      'X',
-                      style: TextStyle(
+                    child: Text(
+                      player == 0 ? 'X' : 'O',
+                      style: const TextStyle(
                           color: Colors.black,
                           fontSize: 70,
                           fontWeight: FontWeight.bold),
@@ -132,9 +145,9 @@ class _HomePageState extends State<HomePage> {
                       primary: Colors.black,
                     ),
                     onPressed: move,
-                    child: const Text(
-                      'X',
-                      style: TextStyle(
+                    child: Text(
+                      player == 0 ? 'X' : 'O',
+                      style: const TextStyle(
                           color: Colors.black,
                           fontSize: 70,
                           fontWeight: FontWeight.bold),
@@ -161,9 +174,9 @@ class _HomePageState extends State<HomePage> {
                       primary: Colors.black,
                     ),
                     onPressed: move,
-                    child: const Text(
-                      'X',
-                      style: TextStyle(
+                    child: Text(
+                      player == 0 ? 'X' : 'O',
+                      style: const TextStyle(
                           color: Colors.black,
                           fontSize: 70,
                           fontWeight: FontWeight.bold),
@@ -181,9 +194,9 @@ class _HomePageState extends State<HomePage> {
                       primary: Colors.black,
                     ),
                     onPressed: move,
-                    child: const Text(
-                      'X',
-                      style: TextStyle(
+                    child: Text(
+                      player == 0 ? 'X' : 'O',
+                      style: const TextStyle(
                           color: Colors.black,
                           fontSize: 70,
                           fontWeight: FontWeight.bold),
@@ -201,9 +214,9 @@ class _HomePageState extends State<HomePage> {
                       primary: Colors.black,
                     ),
                     onPressed: move,
-                    child: const Text(
-                      'X',
-                      style: TextStyle(
+                    child: Text(
+                      player == 0 ? 'X' : 'O',
+                      style: const TextStyle(
                           color: Colors.black,
                           fontSize: 70,
                           fontWeight: FontWeight.bold),
@@ -230,9 +243,9 @@ class _HomePageState extends State<HomePage> {
                       primary: Colors.black,
                     ),
                     onPressed: move,
-                    child: const Text(
-                      'X',
-                      style: TextStyle(
+                    child: Text(
+                      player == 0 ? 'X' : 'O',
+                      style: const TextStyle(
                           color: Colors.black,
                           fontSize: 70,
                           fontWeight: FontWeight.bold),
@@ -250,9 +263,9 @@ class _HomePageState extends State<HomePage> {
                       primary: Colors.black,
                     ),
                     onPressed: move,
-                    child: const Text(
-                      'X',
-                      style: TextStyle(
+                    child: Text(
+                      player == 0 ? 'X' : 'O',
+                      style: const TextStyle(
                           color: Colors.black,
                           fontSize: 70,
                           fontWeight: FontWeight.bold),
@@ -269,14 +282,14 @@ class _HomePageState extends State<HomePage> {
                       fixedSize: const Size(80, 80),
                       primary: Colors.black,
                     ),
-                    onPressed: move,
-                    child: const Text(
-                      'X',
-                      style: TextStyle(
+                    child: Text(
+                      player == 0 ? 'X' : 'O',
+                      style: const TextStyle(
                           color: Colors.black,
                           fontSize: 70,
                           fontWeight: FontWeight.bold),
                     ),
+                    onPressed: move,
                   ),
                 ),
               ],
