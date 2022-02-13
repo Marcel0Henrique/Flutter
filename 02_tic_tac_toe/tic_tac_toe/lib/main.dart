@@ -78,7 +78,7 @@ class _HomePageState extends State<HomePage> {
     }
 
     //* Verificando Linha 2
-    else if (toe[4] != null && toe[5] != null && toe[6] != null) {
+    if (toe[4] != null && toe[5] != null && toe[6] != null) {
       if (toe[4] == 'X' && toe[5] == 'X' && toe[6] == 'X') {
         winner = 0;
       } else if (toe[4] != 'X' && toe[5] != 'X' && toe[6] != 'X') {
@@ -87,7 +87,7 @@ class _HomePageState extends State<HomePage> {
     }
 
     //* Verificando Linha 3
-    else if (toe[7] != null && toe[8] != null && toe[9] != null) {
+    if (toe[7] != null && toe[8] != null && toe[9] != null) {
       if (toe[7] == 'X' && toe[8] == 'X' && toe[9] == 'X') {
         winner = 0;
       } else if (toe[7] != 'X' && toe[8] != 'X' && toe[9] != 'X') {
@@ -96,7 +96,7 @@ class _HomePageState extends State<HomePage> {
     }
 
     //* Verificando coluna 1
-    else if (toe[1] != null && toe[4] != null && toe[7] != null) {
+    if (toe[1] != null && toe[4] != null && toe[7] != null) {
       if (toe[1] == 'X' && toe[4] == 'X' && toe[7] == 'X') {
         winner = 0;
       } else if (toe[1] != 'X' && toe[4] != 'X' && toe[7] != 'X') {
@@ -105,7 +105,7 @@ class _HomePageState extends State<HomePage> {
     }
 
     //* Verificando coluna 2
-    else if (toe[2] != null && toe[5] != null && toe[8] != null) {
+    if (toe[2] != null && toe[5] != null && toe[8] != null) {
       if (toe[2] == 'X' && toe[5] == 'X' && toe[8] == 'X') {
         winner = 0;
       } else if (toe[2] != 'X' && toe[5] != 'X' && toe[8] != 'X') {
@@ -114,7 +114,7 @@ class _HomePageState extends State<HomePage> {
     }
 
     //* Verificando coluna 3
-    else if (toe[3] != null && toe[6] != null && toe[9] != null) {
+    if (toe[3] != null && toe[6] != null && toe[9] != null) {
       if (toe[3] == 'X' && toe[6] == 'X' && toe[9] == 'X') {
         winner = 0;
       } else if (toe[3] != 'X' && toe[6] != 'X' && toe[9] != 'X') {
@@ -123,7 +123,7 @@ class _HomePageState extends State<HomePage> {
     }
 
     //*Verificando diagonal 1
-    else if (toe[1] != null && toe[5] != null && toe[9] != null) {
+    if (toe[1] != null && toe[5] != null && toe[9] != null) {
       if (toe[1] == 'X' && toe[5] == 'X' && toe[9] == 'X') {
         winner = 0;
       } else if (toe[1] != 'X' && toe[5] != 'X' && toe[9] != 'X') {
@@ -132,7 +132,7 @@ class _HomePageState extends State<HomePage> {
     }
 
     //*Verificando diagonal 2
-    else if (toe[3] != null && toe[5] != null && toe[7] != null) {
+    if (toe[3] != null && toe[5] != null && toe[7] != null) {
       if (toe[3] == 'X' && toe[5] == 'X' && toe[7] == 'X') {
         winner = 0;
       } else if (toe[3] != 'X' && toe[5] != 'X' && toe[7] != 'X') {
@@ -171,12 +171,13 @@ class _HomePageState extends State<HomePage> {
     //*Criando AlertDialog
     showDialog(
         context: context,
+        barrierDismissible: false,
         builder: (BuildContext context) => AlertDialog(
               actionsAlignment: MainAxisAlignment.center,
               title: Text(
                 winner != 2 ? 'Vitória' : 'Empate',
                 style: TextStyle(
-                  fontSize: 22,
+                  fontSize: 32,
                   fontWeight: FontWeight.bold,
                   color: winner != 2 ? Colors.yellow[800] : Colors.black,
                 ),
@@ -189,7 +190,7 @@ class _HomePageState extends State<HomePage> {
                         : 'O'
                     : '#',
                 style: TextStyle(
-                  fontSize: 70,
+                  fontSize: 110,
                   fontWeight: FontWeight.bold,
                   color: winner != 2
                       ? winner == 0
@@ -201,11 +202,26 @@ class _HomePageState extends State<HomePage> {
               ),
               actions: [
                 TextButton(
+                  style: TextButton.styleFrom(
+                    backgroundColor: winner != 2
+                        ? winner == 0
+                            ? Colors.red[700]
+                            : Colors.blue[800]
+                        : Colors.black,
+                    fixedSize: const Size(200, 40),
+                  ),
                   onPressed: () {
                     restartGame();
                     Navigator.pop(context);
                   },
-                  child: Text('Tente Novamente'),
+                  child: const Text(
+                    'Tente Novamente',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
                 )
               ],
             ));
