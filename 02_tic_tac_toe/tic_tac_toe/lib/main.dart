@@ -171,6 +171,8 @@ class _HomePageState extends State<HomePage> {
     //*Criando AlertDialog
     showDialog(
         context: context,
+
+        //? impede que apertando fora do Alert feche o alert
         barrierDismissible: false,
         builder: (BuildContext context) => AlertDialog(
               actionsAlignment: MainAxisAlignment.center,
