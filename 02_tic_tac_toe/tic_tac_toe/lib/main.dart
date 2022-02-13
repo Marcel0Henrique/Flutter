@@ -42,6 +42,8 @@ class _HomePageState extends State<HomePage> {
   };
 
   //* Criando a logica do jogo
+
+  //? Função que armazena os movimentos
   void move(int n) {
     setState(() {
       if (toe[n] == null) {
@@ -64,6 +66,7 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  //? verifica quem ganhou o jogo
   void verify() {
     //*Verificando Linha 1
     if (toe[1] != null && toe[2] != null && toe[3] != null) {
@@ -152,6 +155,7 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+  //? reinicia o jogo
   void restartGame() {
     setState(() {
       winner = null;
@@ -162,6 +166,7 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  //? mostra a mensagem de fim de jogo
   void endGame() {
     //*Criando AlertDialog
     showDialog(
