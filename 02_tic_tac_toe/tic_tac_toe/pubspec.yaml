@@ -30,7 +30,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_native_splash: ^2.0.2
-  flutter_launcher_icons: "^0.9.2"
+  
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -40,6 +40,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: "^0.9.2"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -177,7 +178,7 @@ flutter_native_splash:
   #  - 'ios/Runner/Info-Release.plist'
 
 
-  flutter_icons:
+flutter_icons:
   android: true
   ios: true
   image_path: "assets/icon/icon.png"
