@@ -27,6 +27,7 @@ class _HomePageState extends State<HomePage> {
   //* Player 0 == X
   //* Player 1 == O
   int player = 0;
+  int i = 0;
 
   Map<int, String?> toe = {
     1: null,
@@ -40,16 +41,25 @@ class _HomePageState extends State<HomePage> {
     9: null,
   };
 
-  void move() {
+  //* Criando a logica do jogo
+  void move(int n) {
     setState(() {
-      player = 1;
+      if (toe[n] == null) {
+        if (player == 0) {
+          toe[n] = 'X';
+          player = 1;
+        } else {
+          toe[n] = "O";
+          player = 0;
+        }
+      }
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 1, 81, 157),
+      backgroundColor: Color.fromARGB(255, 0, 70, 136),
       body: Column(
         //mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -78,11 +88,11 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 Text(
-                  player == 0 ? 'x' : 'O',
-                  style: const TextStyle(
-                    fontSize: 22,
+                  player == 0 ? 'X' : 'O',
+                  style: TextStyle(
+                    fontSize: 26,
                     fontWeight: FontWeight.bold,
-                    color: Colors.red,
+                    color: player == 0 ? Colors.red : Colors.blue,
                   ),
                 ),
               ],
@@ -100,15 +110,21 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.all(5),
                   child: TextButton(
                     style: TextButton.styleFrom(
-                      backgroundColor: Colors.white,
+                      backgroundColor: toe[1] != null
+                          ? toe[1] == 'X'
+                              ? Colors.red[800]
+                              : Colors.blue[800]
+                          : Colors.white,
                       fixedSize: const Size(80, 80),
                       primary: Colors.black,
                     ),
-                    onPressed: move,
+                    onPressed: () {
+                      move(1);
+                    },
                     child: Text(
-                      player == 0 ? 'X' : 'O',
+                      toe[1] == null ? '' : toe[1].toString(),
                       style: const TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                           fontSize: 70,
                           fontWeight: FontWeight.bold),
                     ),
@@ -120,15 +136,21 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.all(5),
                   child: TextButton(
                     style: TextButton.styleFrom(
-                      backgroundColor: Colors.white,
+                      backgroundColor: toe[2] != null
+                          ? toe[2] == 'X'
+                              ? Colors.red[800]
+                              : Colors.blue[800]
+                          : Colors.white,
                       fixedSize: const Size(80, 80),
                       primary: Colors.black,
                     ),
-                    onPressed: move,
+                    onPressed: () {
+                      move(2);
+                    },
                     child: Text(
-                      player == 0 ? 'X' : 'O',
+                      toe[2] == null ? '' : toe[2].toString(),
                       style: const TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                           fontSize: 70,
                           fontWeight: FontWeight.bold),
                     ),
@@ -140,15 +162,21 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.all(5),
                   child: TextButton(
                     style: TextButton.styleFrom(
-                      backgroundColor: Colors.white,
+                      backgroundColor: toe[3] != null
+                          ? toe[3] == 'X'
+                              ? Colors.red[800]
+                              : Colors.blue[800]
+                          : Colors.white,
                       fixedSize: const Size(80, 80),
                       primary: Colors.black,
                     ),
-                    onPressed: move,
+                    onPressed: () {
+                      move(3);
+                    },
                     child: Text(
-                      player == 0 ? 'X' : 'O',
+                      toe[3] == null ? '' : toe[3].toString(),
                       style: const TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                           fontSize: 70,
                           fontWeight: FontWeight.bold),
                     ),
@@ -169,15 +197,21 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.all(5),
                   child: TextButton(
                     style: TextButton.styleFrom(
-                      backgroundColor: Colors.white,
+                      backgroundColor: toe[4] != null
+                          ? toe[4] == 'X'
+                              ? Colors.red[800]
+                              : Colors.blue[800]
+                          : Colors.white,
                       fixedSize: const Size(80, 80),
                       primary: Colors.black,
                     ),
-                    onPressed: move,
+                    onPressed: () {
+                      move(4);
+                    },
                     child: Text(
-                      player == 0 ? 'X' : 'O',
+                      toe[4] == null ? '' : toe[4].toString(),
                       style: const TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                           fontSize: 70,
                           fontWeight: FontWeight.bold),
                     ),
@@ -189,15 +223,21 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.all(5),
                   child: TextButton(
                     style: TextButton.styleFrom(
-                      backgroundColor: Colors.white,
+                      backgroundColor: toe[5] != null
+                          ? toe[5] == 'X'
+                              ? Colors.red[800]
+                              : Colors.blue[800]
+                          : Colors.white,
                       fixedSize: const Size(80, 80),
                       primary: Colors.black,
                     ),
-                    onPressed: move,
+                    onPressed: () {
+                      move(5);
+                    },
                     child: Text(
-                      player == 0 ? 'X' : 'O',
+                      toe[5] == null ? '' : toe[5].toString(),
                       style: const TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                           fontSize: 70,
                           fontWeight: FontWeight.bold),
                     ),
@@ -209,15 +249,21 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.all(5),
                   child: TextButton(
                     style: TextButton.styleFrom(
-                      backgroundColor: Colors.white,
+                      backgroundColor: toe[6] != null
+                          ? toe[6] == 'X'
+                              ? Colors.red[800]
+                              : Colors.blue[800]
+                          : Colors.white,
                       fixedSize: const Size(80, 80),
                       primary: Colors.black,
                     ),
-                    onPressed: move,
+                    onPressed: () {
+                      move(6);
+                    },
                     child: Text(
-                      player == 0 ? 'X' : 'O',
+                      toe[6] == null ? '' : toe[6].toString(),
                       style: const TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                           fontSize: 70,
                           fontWeight: FontWeight.bold),
                     ),
@@ -238,15 +284,21 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.all(5),
                   child: TextButton(
                     style: TextButton.styleFrom(
-                      backgroundColor: Colors.white,
+                      backgroundColor: toe[7] != null
+                          ? toe[7] == 'X'
+                              ? Colors.red[800]
+                              : Colors.blue[800]
+                          : Colors.white,
                       fixedSize: const Size(80, 80),
                       primary: Colors.black,
                     ),
-                    onPressed: move,
+                    onPressed: () {
+                      move(7);
+                    },
                     child: Text(
-                      player == 0 ? 'X' : 'O',
+                      toe[7] == null ? '' : toe[7].toString(),
                       style: const TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                           fontSize: 70,
                           fontWeight: FontWeight.bold),
                     ),
@@ -258,15 +310,21 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.all(5),
                   child: TextButton(
                     style: TextButton.styleFrom(
-                      backgroundColor: Colors.white,
+                      backgroundColor: toe[8] != null
+                          ? toe[8] == 'X'
+                              ? Colors.red[800]
+                              : Colors.blue[800]
+                          : Colors.white,
                       fixedSize: const Size(80, 80),
                       primary: Colors.black,
                     ),
-                    onPressed: move,
+                    onPressed: () {
+                      move(8);
+                    },
                     child: Text(
-                      player == 0 ? 'X' : 'O',
+                      toe[8] == null ? '' : toe[8].toString(),
                       style: const TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                           fontSize: 70,
                           fontWeight: FontWeight.bold),
                     ),
@@ -278,18 +336,24 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.all(5),
                   child: TextButton(
                     style: TextButton.styleFrom(
-                      backgroundColor: Colors.white,
+                      backgroundColor: toe[9] != null
+                          ? toe[9] == 'X'
+                              ? Colors.red[800]
+                              : Colors.blue[800]
+                          : Colors.white,
                       fixedSize: const Size(80, 80),
                       primary: Colors.black,
                     ),
                     child: Text(
-                      player == 0 ? 'X' : 'O',
+                      toe[9] == null ? '' : toe[9].toString(),
                       style: const TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                           fontSize: 70,
                           fontWeight: FontWeight.bold),
                     ),
-                    onPressed: move,
+                    onPressed: () {
+                      move(9);
+                    },
                   ),
                 ),
               ],
