@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './views/home.dart';
+import 'package:lista_de_tarefas/views/home.dart';
 
 void main() {
   runApp(const MyApp());
