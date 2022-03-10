@@ -33,6 +33,12 @@ class HomePage extends StatelessWidget {
                 //*obscureText: true,
                 //? Mostra um teclado voltado para digitar email
                 keyboardType: TextInputType.emailAddress,
+
+                //* Segundo metodo para pegar as informações
+                onChanged: OnChanged,
+
+                //* Terceiro metodo para pegar as informações
+                onSubmitted: OnSubmitted,
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10),
@@ -51,5 +57,13 @@ class HomePage extends StatelessWidget {
   void login() {
     print(emailController.text);
     emailController.clear();
+  }
+
+  void OnChanged(String text) {
+    print(text);
+  }
+
+  void OnSubmitted(String text) {
+    print(text);
   }
 }
