@@ -1,52 +1,35 @@
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
-
-  //* Controlador para poder pegar as informações do campo
-  final TextEditingController emailController = TextEditingController();
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.only(
-            left: 20,
-            right: 20,
-            top: 25,
-          ),
-          child: Column(
-            //? faz a coluna ocupar o espaço minimo
-            mainAxisSize: MainAxisSize.min,
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Row(
             children: [
-              TextField(
-                //? Adicionando o controlador ao widget
-                controller: emailController,
-                decoration: const InputDecoration(
-                  labelText: 'Email',
-                  hintText: 'exemplo@email.com',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.email_outlined),
-                ),
-                //? obscuretext oculta os caracteres que foram digitados
-                //*obscureText: true,
-                //? Mostra um teclado voltado para digitar email
-                keyboardType: TextInputType.emailAddress,
-
-                //* Segundo metodo para pegar as informações
-                onChanged: OnChanged,
-
-                //* Terceiro metodo para pegar as informações
-                onSubmitted: OnSubmitted,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: ElevatedButton(
-                  onPressed: login,
-                  child: const Text('Entrar'),
+              //* o Expanded tenta ocupar o maior espaço disponivel, sem ele acontece um erro por causa do Row
+              const Expanded(
+                child: TextField(
+                  decoration: InputDecoration(
+                    labelText: "Adicione uma tarefa",
+                    hintText: "Ex: Ler um livro",
+                    border: OutlineInputBorder(),
+                  ),
                 ),
               ),
+
+              //? Cria um espaço em branco entre o TextFiel e o ElevatedButton
+              const SizedBox(
+                width: 8,
+              ),
+              ElevatedButton(
+                onPressed: teste,
+                child: const Text('+'),
+              )
             ],
           ),
         ),
@@ -54,16 +37,7 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  void login() {
-    print(emailController.text);
-    emailController.clear();
-  }
-
-  void OnChanged(String text) {
-    print(text);
-  }
-
-  void OnSubmitted(String text) {
-    print(text);
+  void teste() {
+    print('Teste');
   }
 }
