@@ -48,6 +48,30 @@ class HomePage extends StatelessWidget {
               const SizedBox(
                 height: 16,
               ),
+              ListView(
+                //* o listView pode ser colocado dentro de um sizedbox para
+                //* poder definir o tamanho, senão acontece um erro
+                shrinkWrap: true,
+                //? shrinkWrap permite que a lista tenha um tamanho responsivo,
+                //? dependendo da quantidade de itens dentro dela
+                children: [
+                  Container(
+                    color: Colors.red,
+                    height: 50,
+                  ),
+                  Container(
+                    color: Colors.blue,
+                    height: 50,
+                  ),
+                  Container(
+                    color: Colors.green,
+                    height: 50,
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 16,
+              ),
               Row(
                 children: [
                   const Expanded(
