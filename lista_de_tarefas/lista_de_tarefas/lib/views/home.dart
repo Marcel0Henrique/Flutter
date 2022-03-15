@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  //* controladores
+  final TextEditingController tarefaController = TextEditingController();
+
+  //? todos é lista em ingles
+  List<String> tarefas = [];
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +29,10 @@ class HomePage extends StatelessWidget {
               Row(
                 children: [
                   //* o Expanded tenta ocupar o maior espaço disponivel, sem ele acontece um erro por causa do Row
-                  const Expanded(
+                  Expanded(
                     child: TextField(
-                      decoration: InputDecoration(
+                      controller: tarefaController,
+                      decoration: const InputDecoration(
                         labelText: "Adicione uma tarefa",
                         hintText: "Ex: Ler um livro",
                         border: OutlineInputBorder(),
@@ -33,7 +45,18 @@ class HomePage extends StatelessWidget {
                     width: 8,
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      //* Cria variavel text que recebe o texto do textField
+                      String text = tarefaController.text;
+
+                      setState(() {
+                        //* Adiciona o texto na lista
+                        tarefas.add(text);
+                      });
+
+                      //* Limpa o texto que ficou no textfield
+                      tarefaController.clear();
+                    },
                     style: ElevatedButton.styleFrom(
                       primary: const Color.fromARGB(255, 0, 197, 232),
                       padding: const EdgeInsets.all(20),
@@ -48,26 +71,27 @@ class HomePage extends StatelessWidget {
               const SizedBox(
                 height: 16,
               ),
-              ListView(
-                //* o listView pode ser colocado dentro de um sizedbox para
-                //* poder definir o tamanho, senão acontece um erro
-                shrinkWrap: true,
-                //? shrinkWrap permite que a lista tenha um tamanho responsivo,
-                //? dependendo da quantidade de itens dentro dela
-                children: [
-                  Container(
-                    color: Colors.red,
-                    height: 50,
-                  ),
-                  Container(
-                    color: Colors.blue,
-                    height: 50,
-                  ),
-                  Container(
-                    color: Colors.green,
-                    height: 50,
-                  ),
-                ],
+              Flexible(
+                //* flexible permite que não ocorra quebra no listView
+                child: ListView(
+                  //* o listView pode ser colocado dentro de um sizedbox para
+                  //* poder definir o tamanho, senão acontece um erro
+                  shrinkWrap: true,
+                  //? shrinkWrap permite que a lista tenha um tamanho responsivo,
+                  //? dependendo da quantidade de itens dentro dela
+                  children: [
+                    //? ListTile é um item da lista
+                    for (String itens in tarefas)
+                      ListTile(
+                        title: Text(itens),
+                        subtitle: Text('15/03/2022'),
+                        leading: Icon(Icons.save),
+                        onTap: () {
+                          print('Tarefa: $itens');
+                        },
+                      ),
+                  ],
+                ),
               ),
               const SizedBox(
                 height: 16,
